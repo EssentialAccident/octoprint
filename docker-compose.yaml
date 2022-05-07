@@ -16,6 +16,6 @@ services:
       - MJPG_STREAMER_INPUT=-n -d /dev/video0:/dev/video0 -r 1280x720 -f 30
     devices:
       #Printer Port
-      - /dev/ttyACM0:/dev/ttyACM0
+      - /dev/ttyUSB0:/dev/ttyUSB0
     #Webcam port
     #  - /dev/video0:/dev/video0
