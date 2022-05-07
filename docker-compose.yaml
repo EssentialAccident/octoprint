@@ -1,0 +1,21 @@
+version: '3.6'
+
+services:
+  vyper:
+    container_name: vyper
+    image: octoprint/octoprint
+    hostname: vyper
+    restart: unless-stopped
+    ports:
+      - 5000:5000
+      - 8080:8080
+    volumes:
+      - /home/dietpi/docker/octoprint1:/vyper
+    environment:
+      - ENABLE_MJPG_STREAMER=true
+      - MJPG_STREAMER_INPUT=-n -d /dev/video0:/dev/video0 -r 1280x720 -f 30
+    devices:
+      #Printer Port
+      - /dev/ttyACM0:/dev/ttyACM0
+    #Webcam port
+    #  - /dev/video0:/dev/video0
