@@ -1,21 +1,36 @@
-version: '3.6'
+version: '2.4'
 
 services:
   Vyper:
-    container_name: vyper
     image: octoprint/octoprint
-    hostname: vyper
     restart: unless-stopped
     ports:
-      - 5000:5000
-      - 8080:8080
-    volumes:
-      - /home/dietpi/docker/octoprint1:/vyper
-    environment:
-      - ENABLE_MJPG_STREAMER=true
-      - MJPG_STREAMER_INPUT=-n -d /dev/video0:/dev/video0 -r 1280x720 -f 30
+      - 80:80
     devices:
-      #Printer Port
+      # Use ls /dev | grep 'ttyUSB\|ttyACM' to find printers
       - /dev/ttyUSB0:/dev/ttyUSB0
-    #Webcam port
     #  - /dev/video0:/dev/video0
+    volumes:
+      - /home/essential-accident/octoprint/vyper:/octoprint
+    # uncomment the lines below to ensure camera streaming is enabled when
+    # you add a video device
+    environment:
+      - ENABLE_MJPG_STREAMER=false
+    ####
+    # uncomment if you wish to edit the configuration files of octoprint
+    # refer to docs on configuration editing for more information
+    ####
+
+    #config-editor:
+    #  image: linuxserver/code-server
+    #  ports:
+    #    - 8443:8443
+    #  depends_on:
+    #    - octoprint
+    #  restart: unless-stopped
+    #  environment:
+    #    - PUID=0
+    #    - GUID=0
+    #    - TZ=America/Chicago
+    #  volumes:
+    #    - octoprint:/octoprint
