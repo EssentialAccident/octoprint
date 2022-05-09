@@ -10,13 +10,13 @@ services:
     devices:
       # Use ls /dev | grep 'ttyUSB\|ttyACM' to find printers
       - /dev/ttyUSB0:/dev/ttyUSB0
-    #  - /dev/video0:/dev/video0
+      - /dev/video0:/dev/video0
     volumes:
       - /home/essential-accident/octoprint/vyper:/octoprint
     # uncomment the lines below to ensure camera streaming is enabled when
     # you add a video device
     environment:
-      - ENABLE_MJPG_STREAMER=false
+      - ENABLE_MJPG_STREAMER=true
 
   Mega_S:
     container_name: Mega_S
