@@ -2,6 +2,7 @@ version: '2.4'
 
 services:
   Vyper:
+    container_name: Vyper
     image: octoprint/octoprint
     restart: unless-stopped
     ports:
@@ -18,6 +19,7 @@ services:
       - ENABLE_MJPG_STREAMER=false
 
   Mega_S:
+    container_name: Mega_S
     image: octoprint/octoprint
     restart: unless-stopped
     ports:
